@@ -1,0 +1,117 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.loginContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: $white;
+
+  @media (min-width: 1024px) {
+    flex-direction: row;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .leftSection {
+    display: flex;
+    flex-direction: column;
+    padding: 30px 20px;
+    align-items: center;
+    background-color: $white;
+
+    @media (min-width: 1024px) {
+      width: 50%;
+      flex: 0 0 50%;
+      padding: 100px 80px 60px 100px;
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+
+    .logo {
+      width: 140px;
+      height: auto;
+      margin-bottom: 40px;
+
+      @media (min-width: 1024px) {
+        width: 173.76px;
+        margin-bottom: 0;
+      }
+    }
+
+    .illustration {
+      width: 100%;
+      max-width: 280px;
+      height: auto;
+      margin-top: 20px;
+
+      @media (min-width: 1024px) {
+        max-width: 600px;
+        margin-top: auto;
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .rightSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px 60px;
+    background-color: $white;
+
+    @media (min-width: 1024px) {
+      width: 50%;
+      flex: 0 0 50%;
+      padding: 60px 100px 60px 80px;
+    }
+
+    .formContainer {
+      width: 100%;
+      max-width: 447px;
+
+      .title {
+        font-size: 32px;
+        font-weight: $font-weight-bold;
+        color: $primary-blue;
+        margin-bottom: 10px;
+
+        @media (min-width: 1024px) {
+          font-size: 40px;
+          margin-bottom: 10px;
+        }
+      }
+
+      .subtitle {
+        font-size: 16px;
+        color: $text-gray;
+        margin-bottom: 40px;
+        font-weight: $font-weight-regular;
+
+        @media (min-width: 1024px) {
+          font-size: 20px;
+          margin-bottom: 60px;
+        }
+      }
+
+      .form {
+        width: 100%;
+
+        .forgotPassword {
+          display: inline-block;
+          color: $primary-cyan;
+          font-size: 12px;
+          font-weight: $font-weight-medium;
+          letter-spacing: 0.1em;
+          margin-bottom: 30px;
+          transition: $transition-base;
+          text-transform: uppercase;
+
+          &:hover {
+            opacity: 0.8;
+          }
+        }
+      }
+    }
+  }
+}

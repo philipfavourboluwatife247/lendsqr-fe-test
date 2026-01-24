@@ -1,0 +1,110 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.loginContainer {
+  display: flex;
+  min-height: 100vh;
+  background-color: $white;
+
+  @include mobile {
+    flex-direction: column;
+  }
+
+  .leftSection {
+    flex: 1;
+    @include flex-column;
+    padding: 100px 80px;
+    position: relative;
+
+    @include mobile {
+      padding: 30px 20px;
+      align-items: center;
+    }
+
+    @include tablet {
+      padding: 60px 40px;
+    }
+
+    .logo {
+      width: 173.76px;
+      height: auto;
+      margin-bottom: 80px;
+
+      @include mobile {
+        width: 140px;
+        margin-bottom: 40px;
+      }
+    }
+
+    .illustration {
+      width: 100%;
+      max-width: 600px;
+      height: auto;
+      margin-top: auto;
+
+      @include mobile {
+        max-width: 300px;
+        margin-top: 20px;
+      }
+
+      @include tablet {
+        max-width: 400px;
+      }
+    }
+  }
+
+  .rightSection {
+    flex: 1;
+    @include flex-center;
+    padding: 40px;
+    background-color: $white;
+
+    @include mobile {
+      padding: 40px 20px;
+    }
+
+    .formContainer {
+      width: 100%;
+      max-width: 447px;
+
+      .title {
+        font-size: $font-size-large;
+        font-weight: $font-weight-bold;
+        color: $primary-blue;
+        margin-bottom: $spacing-sm;
+
+        @include mobile {
+          font-size: 32px;
+        }
+      }
+
+      .subtitle {
+        font-size: $font-size-medium;
+        color: $text-gray;
+        margin-bottom: $spacing-xxl;
+        font-weight: $font-weight-regular;
+
+        @include mobile {
+          font-size: 16px;
+          margin-bottom: $spacing-xl;
+        }
+      }
+
+      .form {
+        .forgotPassword {
+          display: inline-block;
+          color: $primary-cyan;
+          font-size: $font-size-small;
+          font-weight: $font-weight-medium;
+          letter-spacing: 0.1em;
+          margin-bottom: $spacing-xl;
+          transition: $transition-base;
+
+          &:hover {
+            opacity: 0.8;
+          }
+        }
+      }
+    }
+  }
+}

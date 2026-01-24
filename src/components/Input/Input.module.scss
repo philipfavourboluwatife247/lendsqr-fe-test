@@ -1,0 +1,68 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.inputWrapper {
+  width: 100%;
+  margin-bottom: $spacing-lg;
+
+  .label {
+    display: block;
+    margin-bottom: $spacing-xs;
+    font-size: $font-size-base;
+    color: $text-gray;
+    font-weight: $font-weight-medium;
+  }
+
+  .inputContainer {
+    position: relative;
+    width: 100%;
+
+    .input {
+      width: 100%;
+      padding: 15px 20px;
+      border: 1px solid $border-color;
+      border-radius: $border-radius-sm;
+      font-size: $font-size-base;
+      color: $text-gray;
+      transition: $transition-base;
+
+      &::placeholder {
+        color: $text-light-gray;
+        font-size: $font-size-base;
+      }
+
+      &:focus {
+        border-color: $primary-cyan;
+        outline: none;
+      }
+
+      &.inputError {
+        border-color: #e4033b;
+      }
+    }
+
+    .showButton {
+      @include button-reset;
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: $primary-cyan;
+      font-size: $font-size-small;
+      font-weight: $font-weight-medium;
+      letter-spacing: 0.1em;
+      transition: $transition-base;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+
+  .error {
+    display: block;
+    margin-top: $spacing-xs;
+    font-size: $font-size-small;
+    color: #e4033b;
+  }
+}

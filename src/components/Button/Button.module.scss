@@ -1,0 +1,52 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.button {
+  @include button-reset;
+  padding: 15px 30px;
+  border-radius: $border-radius-sm;
+  font-size: $font-size-base;
+  font-weight: $font-weight-medium;
+  transition: $transition-base;
+  text-align: center;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  &.primary {
+    background-color: $primary-cyan;
+    color: $white;
+
+    &:hover:not(:disabled) {
+      background-color: darken($primary-cyan, 5%);
+      box-shadow: 0 4px 8px rgba($primary-cyan, 0.3);
+    }
+  }
+
+  &.secondary {
+    background-color: $white;
+    color: $primary-cyan;
+    border: 1px solid $primary-cyan;
+
+    &:hover:not(:disabled) {
+      background-color: rgba($primary-cyan, 0.05);
+    }
+  }
+
+  &.outline {
+    background-color: transparent;
+    color: $text-gray;
+    border: 1px solid $border-color;
+
+    &:hover:not(:disabled) {
+      border-color: $primary-cyan;
+      color: $primary-cyan;
+    }
+  }
+
+  &.fullWidth {
+    width: 100%;
+  }
+}
