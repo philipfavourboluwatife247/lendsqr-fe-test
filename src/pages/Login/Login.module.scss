@@ -10,32 +10,62 @@
   @media (min-width: 1024px) {
     flex-direction: row;
     height: 100vh;
-    overflow: hidden;
   }
 
   .leftSection {
     display: flex;
     flex-direction: column;
     padding: 30px 20px;
-    align-items: center;
-    background-color: $white;
+    background-color: #FAFAFA;
+
+    @media (min-width: 768px) and (max-width: 1023px) {
+      padding: 40px;
+    }
 
     @media (min-width: 1024px) {
       width: 50%;
       flex: 0 0 50%;
-      padding: 100px 80px 60px 100px;
+      padding: 6vh 5vw 4vh 5vw;
       align-items: flex-start;
-      justify-content: flex-start;
+      justify-content: space-between;
+      box-shadow: 3px 0px 20px 0px rgba(0, 0, 0, 0.04);
+    }
+
+    @media (min-width: 1440px) {
+      padding: 100px 97px 60px 97px;
     }
 
     .logo {
       width: 140px;
       height: auto;
-      margin-bottom: 40px;
+      flex-shrink: 0;
+      align-self: flex-start;
+      margin-bottom: 0;
+
+      @media (min-width: 768px) {
+        width: 160px;
+      }
 
       @media (min-width: 1024px) {
         width: 173.76px;
-        margin-bottom: 0;
+        height: 36px;
+      }
+    }
+
+    .illustrationWrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      flex: 1;
+      margin-top: 60px;
+
+      @media (min-width: 768px) and (max-width: 1023px) {
+        margin-top: 80px;
+      }
+
+      @media (min-width: 1024px) {
+        margin-top: auto;
       }
     }
 
@@ -43,12 +73,19 @@
       width: 100%;
       max-width: 280px;
       height: auto;
-      margin-top: 20px;
+      object-fit: contain;
+
+      @media (min-width: 768px) and (max-width: 1023px) {
+        max-width: 400px;
+      }
 
       @media (min-width: 1024px) {
-        max-width: 600px;
-        margin-top: auto;
-        margin-bottom: 0;
+        max-width: 100%;
+        max-height: 55vh;
+      }
+
+      @media (min-width: 1440px) {
+        max-height: 500px;
       }
     }
   }
@@ -60,10 +97,20 @@
     padding: 40px 20px 60px;
     background-color: $white;
 
+    @media (min-width: 768px) {
+      padding: 60px 40px;
+    }
+
     @media (min-width: 1024px) {
       width: 50%;
       flex: 0 0 50%;
-      padding: 60px 100px 60px 80px;
+      padding: 0 5vw;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @media (min-width: 1440px) {
+      padding: 0 100px;
     }
 
     .formContainer {
@@ -78,7 +125,7 @@
 
         @media (min-width: 1024px) {
           font-size: 40px;
-          margin-bottom: 10px;
+          line-height: 54.64px;
         }
       }
 
@@ -90,6 +137,7 @@
 
         @media (min-width: 1024px) {
           font-size: 20px;
+          line-height: 27.32px;
           margin-bottom: 60px;
         }
       }

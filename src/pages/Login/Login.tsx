@@ -9,24 +9,24 @@ import illustration from '../../assets/images/login-illustration.png';
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
+
   const [formData, setFormData] = useState<LoginFormData>({
     email: '',
     password: '',
   });
+
   const [errors, setErrors] = useState<FormErrors>({});
   const [loading, setLoading] = useState(false);
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
 
-    // Email validation
     if (!formData.email.trim()) {
       newErrors.email = 'Email is required';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = 'Please enter a valid email';
     }
 
-    // Password validation
     if (!formData.password) {
       newErrors.password = 'Password is required';
     } else if (formData.password.length < 6) {
@@ -44,22 +44,20 @@ const Login: React.FC = () => {
 
     setLoading(true);
 
-    // Simulate API call
     setTimeout(() => {
       setLoading(false);
-      // For now, accept any valid email/password
-      // Later, you can add real authentication
       navigate('/dashboard');
     }, 1500);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+
     setFormData((prev) => ({
       ...prev,
       [name]: value,
     }));
-    // Clear error when user starts typing
+
     if (errors[name as keyof FormErrors]) {
       setErrors((prev) => ({
         ...prev,
@@ -70,15 +68,20 @@ const Login: React.FC = () => {
 
   return (
     <div className={styles.loginContainer}>
+      {/* LEFT SECTION */}
       <div className={styles.leftSection}>
-        <img src={logo} alt="Lendsqr" className={styles.logo} />
-        <img
-          src={illustration}
-          alt="Login illustration"
-          className={styles.illustration}
-        />
+        <img src={logo} alt="Lendsqr Logo" className={styles.logo} />
+
+        <div className={styles.illustrationWrapper}>
+          <img
+            src={illustration}
+            alt="Login illustration"
+            className={styles.illustration}
+          />
+        </div>
       </div>
 
+      {/* RIGHT SECTION */}
       <div className={styles.rightSection}>
         <div className={styles.formContainer}>
           <h1 className={styles.title}>Welcome!</h1>
@@ -119,3 +122,4 @@ const Login: React.FC = () => {
 };
 
 export default Login;
+
