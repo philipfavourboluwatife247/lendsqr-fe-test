@@ -1,0 +1,39 @@
+@import '../../styles/variables';
+
+.actionMenu {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background-color: $white;
+  border: 1px solid $border-color;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 8px 0;
+  min-width: 180px;
+  z-index: 100;
+  margin-top: 5px;
+
+  .menuItem {
+    width: 100%;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: none;
+    border: none;
+    color: $text-gray;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: left;
+    transition: $transition-base;
+
+    .icon {
+      width: 16px;
+      height: 16px;
+    }
+
+    &:hover {
+      background-color: rgba($primary-cyan, 0.05);
+    }
+  }
+}

@@ -1,0 +1,98 @@
+@import '../../styles/variables';
+
+.filterPopup {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: $white;
+  border: 1px solid $border-color;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 30px;
+  width: 270px;
+  z-index: 100;
+  margin-top: 10px;
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .formGroup {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+
+      label {
+        font-size: 14px;
+        color: $text-gray;
+        font-weight: $font-weight-medium;
+      }
+
+      input,
+      select {
+        padding: 10px 15px;
+        border: 1px solid $border-color;
+        border-radius: 8px;
+        font-size: 14px;
+        color: $text-gray;
+        outline: none;
+        transition: $transition-base;
+
+        &:focus {
+          border-color: $primary-cyan;
+        }
+
+        &::placeholder {
+          color: $text-light-gray;
+        }
+      }
+
+      select {
+        cursor: pointer;
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%23545F7D' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 15px center;
+        padding-right: 40px;
+      }
+    }
+
+    .buttons {
+      display: flex;
+      gap: 14px;
+      margin-top: 10px;
+
+      button {
+        flex: 1;
+        padding: 12px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: $font-weight-medium;
+        cursor: pointer;
+        transition: $transition-base;
+        border: none;
+        outline: none;
+      }
+
+      .resetBtn {
+        background-color: transparent;
+        border: 1px solid $text-gray;
+        color: $text-gray;
+
+        &:hover {
+          background-color: rgba($text-gray, 0.05);
+        }
+      }
+
+      .filterBtn {
+        background-color: $primary-cyan;
+        color: $white;
+
+        &:hover {
+          background-color: darken($primary-cyan, 5%);
+        }
+      }
+    }
+  }
+}

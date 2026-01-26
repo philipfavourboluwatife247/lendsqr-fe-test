@@ -1,0 +1,44 @@
+@import '../../styles/variables';
+
+.statCard {
+  background-color: $white;
+  border: 1px solid $border-color;
+  border-radius: 4px;
+  padding: 30px;
+  transition: $transition-base;
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+  }
+
+  .iconWrapper {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
+
+    .icon {
+      width: 16px;
+      height: 16px;
+      object-fit: contain;
+    }
+  }
+
+  .label {
+    font-size: 14px;
+    color: $text-gray;
+    font-weight: $font-weight-medium;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+
+  .value {
+    font-size: 24px;
+    color: $primary-blue;
+    font-weight: $font-weight-bold;
+  }
+}

@@ -1,0 +1,77 @@
+@import '../../styles/variables';
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+  padding: 20px 0;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .showing {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: $text-gray;
+    font-size: 14px;
+
+    .select {
+      padding: 8px 12px;
+      border: 1px solid $border-color;
+      border-radius: 4px;
+      background-color: rgba($primary-cyan, 0.1);
+      color: $text-gray;
+      font-size: 14px;
+      font-weight: $font-weight-medium;
+      cursor: pointer;
+      outline: none;
+    }
+  }
+
+  .pages {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    .arrow,
+    .pageBtn {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid $border-color;
+      background-color: transparent;
+      color: $text-gray;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: $transition-base;
+
+      &:hover:not(:disabled) {
+        background-color: rgba($primary-cyan, 0.1);
+        border-color: $primary-cyan;
+      }
+
+      &:disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+      }
+
+      &.active {
+        background-color: $primary-cyan;
+        color: $white;
+        border-color: $primary-cyan;
+      }
+    }
+
+    .dots {
+      color: $text-gray;
+      padding: 0 5px;
+    }
+  }
+}

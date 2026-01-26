@@ -1,0 +1,167 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.navbar {
+  height: 100px;
+  background-color: $white;
+  border-bottom: 1px solid $border-color;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+
+  .navbarContent {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+    gap: 40px;
+
+    @media (max-width: 1023px) {
+      gap: 15px;
+      padding: 0 20px;
+    }
+  }
+
+  .logo {
+    img {
+      height: 30px;
+      width: auto;
+
+      @media (max-width: 1023px) {
+        height: 25px;
+      }
+    }
+  }
+
+  .searchForm {
+    flex: 1;
+    max-width: 400px;
+    display: flex;
+    border: 1px solid $border-color;
+    border-radius: $border-radius-md;
+    overflow: hidden;
+
+    @media (max-width: 1023px) {
+      display: none; // Hide search in navbar on mobile
+    }
+
+    .searchInput {
+      flex: 1;
+      padding: 12px 20px;
+      border: none;
+      outline: none;
+      font-size: 14px;
+      color: $text-gray;
+
+      &::placeholder {
+        color: $text-light-gray;
+      }
+    }
+
+    .searchButton {
+      @include button-reset;
+      background-color: $primary-cyan;
+      color: $white;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: $transition-base;
+
+      img {
+        width: 16px;
+        height: 16px;
+      }
+
+      &:hover {
+        background-color: darken($primary-cyan, 5%);
+      }
+    }
+  }
+
+  .rightSection {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-left: auto;
+
+    @media (max-width: 1023px) {
+      gap: 15px;
+    }
+
+    .docs {
+      color: $text-gray;
+      text-decoration: underline;
+      font-size: 16px;
+      transition: $transition-base;
+
+      &:hover {
+        color: $primary-cyan;
+      }
+
+      @media (max-width: 768px) {
+        display: none;
+      }
+    }
+
+    .notification {
+      @include button-reset;
+      position: relative;
+      transition: $transition-base;
+
+      img {
+        width: 26px;
+        height: 26px;
+      }
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+
+      .avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        object-fit: cover;
+
+        @media (max-width: 768px) {
+          width: 40px;
+          height: 40px;
+        }
+      }
+
+      .username {
+        color: $text-gray;
+        font-size: 16px;
+        font-weight: $font-weight-medium;
+
+        @media (max-width: 768px) {
+          display: none;
+        }
+      }
+
+      .dropdownIcon {
+        width: 12px;
+        height: 12px;
+
+        @media (max-width: 768px) {
+          display: none;
+        }
+      }
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+}
