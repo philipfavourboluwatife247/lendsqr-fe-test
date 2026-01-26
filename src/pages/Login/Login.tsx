@@ -46,7 +46,7 @@ const Login: React.FC = () => {
 
     setTimeout(() => {
       setLoading(false);
-      navigate('/dashboard');
+      navigate('/users');
     }, 1500);
   };
 
