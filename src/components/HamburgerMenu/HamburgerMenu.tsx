@@ -16,8 +16,8 @@ const HamburgerMenu: React.FC = () => {
   return (
     <>
       {/* Hamburger Button */}
-      <button
-        className={styles.hamburger}
+      <button 
+        className={styles.hamburger} 
         onClick={toggleMenu}
         aria-label="Toggle menu"
       >
@@ -28,8 +28,8 @@ const HamburgerMenu: React.FC = () => {
 
       {/* Overlay */}
       {isOpen && (
-        <div
-          className={styles.overlay}
+        <div 
+          className={styles.overlay} 
           onClick={closeMenu}
         />
       )}

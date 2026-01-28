@@ -16,3 +16,10 @@
     }
   }
 }
+
+// Hide the desktop sidebar on mobile - only show via hamburger menu
+@media (max-width: 1023px) {
+  .layout > aside {
+    display: none !important;
+  }
+}

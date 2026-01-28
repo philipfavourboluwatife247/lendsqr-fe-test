@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from './FilterPopup.module.scss';
+import calendarIcon from '../../assets/icons/table/calendar-icon.svg';
 
 interface FilterPopupProps {
   onFilter: (filters: FilterData) => void;
@@ -90,12 +91,24 @@ const FilterPopup: React.FC<FilterPopupProps> = ({ onFilter, onReset, onClose })
 
         <div className={styles.formGroup}>
           <label>Date</label>
-          <input
-            type="date"
-            name="date"
-            value={filters.date}
-            onChange={handleChange}
-          />
+          <div className={styles.dateInput}>
+            <input
+              type="text"
+              name="date"
+              placeholder="Date"
+              value={filters.date}
+              onChange={handleChange}
+              onFocus={(e) => {
+                e.target.type = 'date';
+              }}
+              onBlur={(e) => {
+                if (!e.target.value) {
+                  e.target.type = 'text';
+                }
+              }}
+            />
+            <img src={calendarIcon} alt="" className={styles.calendarIcon} />
+          </div>
         </div>
 
         <div className={styles.formGroup}>

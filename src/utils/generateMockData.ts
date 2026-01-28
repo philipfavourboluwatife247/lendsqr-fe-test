@@ -8,7 +8,7 @@ const statuses: Array<'Active' | 'Inactive' | 'Pending' | 'Blacklisted'> = [
   'Blacklisted',
 ];
 const genders: Array<'Male' | 'Female'> = ['Male', 'Female'];
-const maritalStatuses = ['Single', 'Married', 'Divorced', 'Widowed'];
+const maritalStatuses: Array<'Single' | 'Married' | 'Divorced' | 'Widowed'> = ['Single', 'Married', 'Divorced', 'Widowed'];
 const educationLevels = ['B.Sc', 'M.Sc', 'Ph.D', 'HND', 'OND'];
 const employmentStatuses = ['Employed', 'Unemployed', 'Self-employed'];
 const sectors = ['FinTech', 'Healthcare', 'Education', 'Technology', 'Agriculture'];
@@ -53,7 +53,7 @@ const generateDate = (): string => {
   const hour = getRandomNumber(1, 12);
   const minute = getRandomNumber(10, 59);
   const period = getRandomElement(['AM', 'PM']);
-  
+
   return `${month} ${day}, ${year} ${hour}:${minute} ${period}`;
 };
 
@@ -69,7 +69,7 @@ const generateEmail = (firstName: string, lastName: string, domain?: string): st
 const generateGuarantor = (): Guarantor => {
   const firstName = getRandomElement(firstNames);
   const lastName = getRandomElement(lastNames);
-  
+
   return {
     fullName: `${firstName} ${lastName}`,
     phoneNumber: generatePhoneNumber(),
@@ -80,14 +80,14 @@ const generateGuarantor = (): Guarantor => {
 
 export const generateMockUsers = (count: number = 500): User[] => {
   const users: User[] = [];
-  
+
   for (let i = 0; i < count; i++) {
     const firstName = getRandomElement(firstNames);
     const lastName = getRandomElement(lastNames);
     const fullName = `${firstName} ${lastName}`;
     const username = generateUsername(firstName, lastName);
     const organization = getRandomElement(organizations);
-    
+
     const user: User = {
       id: `user_${i + 1}`,
       organization,
@@ -96,14 +96,14 @@ export const generateMockUsers = (count: number = 500): User[] => {
       phoneNumber: generatePhoneNumber(),
       dateJoined: generateDate(),
       status: getRandomElement(statuses),
-      
+
       fullName,
       bvn: generateBVN(),
       gender: getRandomElement(genders),
       maritalStatus: getRandomElement(maritalStatuses),
       children: getRandomElement(['None', '1', '2', '3', '4']),
       typeOfResidence: getRandomElement(residenceTypes),
-      
+
       levelOfEducation: getRandomElement(educationLevels),
       employmentStatus: getRandomElement(employmentStatuses),
       sectorOfEmployment: getRandomElement(sectors),
@@ -111,23 +111,23 @@ export const generateMockUsers = (count: number = 500): User[] => {
       officeEmail: generateEmail(firstName, lastName, organization.toLowerCase() + '.com'),
       monthlyIncome: `₦${getRandomNumber(50, 500)},000.00- ₦${getRandomNumber(100, 800)},000.00`,
       loanRepayment: `${getRandomNumber(10, 100)},000`,
-      
+
       twitter: `@${username}`,
       facebook: fullName,
       instagram: `@${username}`,
-      
+
       guarantors: [generateGuarantor(), generateGuarantor()],
-      
+
       accountBalance: `₦${getRandomNumber(100, 500)},000.00`,
       accountNumber: generateAccountNumber(),
       bankName: getRandomElement(['Providus Bank', 'GTBank', 'Access Bank', 'First Bank', 'Zenith Bank']),
-      
+
       tier: getRandomNumber(1, 3),
     };
-    
+
     users.push(user);
   }
-  
+
   return users;
 };
 

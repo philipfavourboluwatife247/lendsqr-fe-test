@@ -20,7 +20,7 @@
     gap: 40px;
 
     @media (max-width: 1023px) {
-      gap: 15px;
+      gap: 20px;
       padding: 0 20px;
     }
   }
@@ -45,7 +45,7 @@
     overflow: hidden;
 
     @media (max-width: 1023px) {
-      display: none; // Hide search in navbar on mobile
+      display: none;
     }
 
     .searchInput {

@@ -2,22 +2,78 @@
 @import '../../styles/mixins';
 
 .sidebar {
-  width: 283px;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   background-color: $white;
-  border-right: 1px solid $border-color;
   overflow-y: auto;
-  position: fixed;
-  left: 0;
-  top: 0;
-  padding-top: 100px;
 
-  @media (max-width: 1023px) {
-    display: none;
+  @media (min-width: 1024px) {
+    width: 283px;
+    height: 100vh;
+    border-right: 1px solid $border-color;
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding-top: 100px;
   }
 
   .sidebarContent {
     padding: 30px 0;
+
+    .mobileProfile {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      padding: 0 30px 20px;
+      border-bottom: 1px solid $border-color;
+      margin-bottom: 20px;
+      margin-top: 30px;
+
+      @media (min-width: 1024px) {
+        display: none;
+      }
+
+      .profileSection {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        .avatar {
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+
+        .profileInfo {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+
+          .name {
+            font-size: 16px;
+            font-weight: $font-weight-medium;
+            color: $text-gray;
+          }
+
+          .dropdownIcon {
+            width: 10px;
+            height: 10px;
+          }
+        }
+      }
+
+      .docsLink {
+        color: $text-gray;
+        text-decoration: underline;
+        font-size: 14px;
+        transition: $transition-base;
+
+        &:hover {
+          color: $primary-cyan;
+        }
+      }
+    }
   }
 
   .switchOrg {
@@ -28,7 +84,7 @@
     color: $text-gray;
     font-size: 16px;
     cursor: pointer;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 
     .icon {
       width: 16px;
@@ -83,6 +139,7 @@
   }
 
   .section {
+    margin-top: 20px;
     margin-bottom: 30px;
 
     .sectionTitle {
@@ -122,6 +179,7 @@
     color: $text-gray;
     font-size: 12px;
     opacity: 0.5;
+    margin-bottom: 30px;
   }
 
   &::-webkit-scrollbar {

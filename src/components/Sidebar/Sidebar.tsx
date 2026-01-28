@@ -2,7 +2,6 @@ import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import styles from './Sidebar.module.scss';
 
-// Import all sidebar icons
 import switchOrgIcon from '../../assets/icons/sidebar/switch-org-icon.svg';
 import dashboardIcon from '../../assets/icons/sidebar/dashboard-icon.svg';
 import usersIcon from '../../assets/icons/sidebar/users-icon.svg';
@@ -28,6 +27,7 @@ import auditLogsIcon from '../../assets/icons/sidebar/audit-logs-icon.svg';
 import systemsMessagesIcon from '../../assets/icons/sidebar/systems-messages-icon.svg';
 import logoutIcon from '../../assets/icons/sidebar/logout-icon.svg';
 import dropdownIcon from '../../assets/icons/navbar/dropdown-icon.svg';
+import profileImage from '../../assets/images/profile.png';
 
 interface SidebarProps {
   onClose?: () => void;
@@ -49,6 +49,20 @@ const Sidebar: React.FC<SidebarProps> = ({ onClose }) => {
   return (
     <aside className={styles.sidebar}>
       <div className={styles.sidebarContent}>
+        {/* Mobile Profile Section */}
+        <div className={styles.mobileProfile}>
+          <div className={styles.profileSection}>
+            <img src={profileImage} alt="Adedeji" className={styles.avatar} />
+            <div className={styles.profileInfo}>
+              <span className={styles.name}>Adedeji</span>
+              <img src={dropdownIcon} alt="" className={styles.dropdownIcon} />
+            </div>
+          </div>
+          <a href="#" className={styles.docsLink}>
+            Docs
+          </a>
+        </div>
+
         <div className={styles.switchOrg} onClick={handleNavClick}>
           <img src={switchOrgIcon} alt="" className={styles.icon} />
           <span>Switch Organization</span>
@@ -62,9 +76,9 @@ const Sidebar: React.FC<SidebarProps> = ({ onClose }) => {
 
         <div className={styles.section}>
           <h4 className={styles.sectionTitle}>CUSTOMERS</h4>
-          <NavLink
-            to="/users"
-            className={({ isActive }) =>
+          <NavLink 
+            to="/users" 
+            className={({ isActive }) => 
               `${styles.navItem} ${isActive ? styles.active : ''}`
             }
             onClick={handleNavClick}

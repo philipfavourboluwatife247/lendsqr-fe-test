@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './pages/Login/Login';
 import Users from './pages/Users/Users';
+import UserDetails from './pages/UserDetails/UserDetails';
 import './styles/global.scss';
 
 function App() {
@@ -10,8 +11,8 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/users" element={<Users />} />
+        <Route path="/users/:id" element={<UserDetails />} />
         <Route path="/" element={<Navigate to="/login" replace />} />
-        {/* We'll add more routes later */}
       </Routes>
     </Router>
   );
