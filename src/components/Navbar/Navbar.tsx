@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import HamburgerMenu from '../HamburgerMenu/HamburgerMenu';
 import styles from './Navbar.module.scss';
 import logo from '../../assets/images/logo.svg';
@@ -38,14 +39,18 @@ const Navbar: React.FC = () => {
         </form>
 
         <div className={styles.rightSection}>
-          <a href="#" className={styles.docs}>Docs</a>
-          <button className={styles.notification}>
+          <Link to="/docs" className={styles.docs}>
+            Docs
+          </Link>
+
+          <button className={styles.notification} type="button">
             <img src={notificationIcon} alt="Notifications" />
           </button>
+
           <div className={styles.profile}>
-            <img 
+            <img
               src={profileImage}
-              alt="Adedeji Profile" 
+              alt="Adedeji Profile"
               className={styles.avatar}
             />
             <span className={styles.username}>Adedeji</span>
