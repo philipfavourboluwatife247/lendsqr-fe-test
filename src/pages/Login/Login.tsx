@@ -1,5 +1,5 @@
 import React, { useState, FormEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
 import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
 import { LoginFormData, FormErrors } from '../../types';
@@ -68,7 +68,6 @@ const Login: React.FC = () => {
 
   return (
     <div className={styles.loginContainer}>
-      {/* LEFT SECTION */}
       <div className={styles.leftSection}>
         <img src={logo} alt="Lendsqr Logo" className={styles.logo} />
 
@@ -81,7 +80,6 @@ const Login: React.FC = () => {
         </div>
       </div>
 
-      {/* RIGHT SECTION */}
       <div className={styles.rightSection}>
         <div className={styles.formContainer}>
           <h1 className={styles.title}>Welcome!</h1>
@@ -107,9 +105,9 @@ const Login: React.FC = () => {
               showPasswordToggle
             />
 
-            <a href="#" className={styles.forgotPassword}>
+            <NavLink to="/forgot-password" className={styles.forgotPassword}>
               FORGOT PASSWORD?
-            </a>
+            </NavLink>
 
             <Button type="submit" fullWidth loading={loading}>
               LOG IN
@@ -122,4 +120,3 @@ const Login: React.FC = () => {
 };
 
 export default Login;
-
