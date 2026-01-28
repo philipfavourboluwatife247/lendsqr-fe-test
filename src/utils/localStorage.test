@@ -1,0 +1,201 @@
+import { storage } from './localStorage';
+import { User } from '../types';
+
+// Mock localStorage
+const localStorageMock = (() => {
+  let store: Record<string, string> = {};
+
+  return {
+    getItem: (key: string) => store[key] || null,
+    setItem: (key: string, value: string) => {
+      store[key] = value.toString();
+    },
+    removeItem: (key: string) => {
+      delete store[key];
+    },
+    clear: () => {
+      store = {};
+    },
+  };
+})();
+
+Object.defineProperty(window, 'localStorage', {
+  value: localStorageMock,
+});
+
+describe('localStorage utilities', () => {
+  beforeEach(() => {
+    localStorage.clear();
+  });
+
+  describe('saveUsers and getUsers', () => {
+    it('should save and retrieve users array', () => {
+      const mockUsers: User[] = [
+        {
+          id: 'user_1',
+          fullName: 'Test User',
+          email: 'test@example.com',
+          phoneNumber: '08012345678',
+        } as User,
+      ];
+
+      storage.saveUsers(mockUsers);
+      const retrieved = storage.getUsers();
+
+      expect(retrieved).toEqual(mockUsers);
+      expect(retrieved).toHaveLength(1);
+    });
+
+    it('should return empty array when no users are stored', () => {
+      const users = storage.getUsers();
+      expect(users).toEqual([]);
+    });
+
+    it('should handle multiple users', () => {
+      const mockUsers: User[] = [
+        { id: 'user_1', fullName: 'User 1' } as User,
+        { id: 'user_2', fullName: 'User 2' } as User,
+        { id: 'user_3', fullName: 'User 3' } as User,
+      ];
+
+      storage.saveUsers(mockUsers);
+      const retrieved = storage.getUsers();
+
+      expect(retrieved).toHaveLength(3);
+      expect(retrieved[0].id).toBe('user_1');
+      expect(retrieved[2].id).toBe('user_3');
+    });
+
+    it('should overwrite existing users', () => {
+      const initialUsers: User[] = [
+        { id: 'user_1', fullName: 'User 1' } as User,
+      ];
+      const updatedUsers: User[] = [
+        { id: 'user_2', fullName: 'User 2' } as User,
+        { id: 'user_3', fullName: 'User 3' } as User,
+      ];
+
+      storage.saveUsers(initialUsers);
+      storage.saveUsers(updatedUsers);
+      const retrieved = storage.getUsers();
+
+      expect(retrieved).toHaveLength(2);
+      expect(retrieved[0].id).toBe('user_2');
+    });
+  });
+
+  describe('saveUser and getUser', () => {
+    it('should save and retrieve single user', () => {
+      const mockUser: User = {
+        id: 'user_123',
+        fullName: 'John Doe',
+        email: 'john@example.com',
+        phoneNumber: '08012345678',
+        status: 'Active',
+      } as User;
+
+      storage.saveUser(mockUser);
+      const retrieved = storage.getUser();
+
+      expect(retrieved).toEqual(mockUser);
+    });
+
+    it('should return null when no user is stored', () => {
+      const user = storage.getUser();
+      expect(user).toBeNull();
+    });
+
+    it('should overwrite existing user', () => {
+      const firstUser: User = {
+        id: 'user_1',
+        fullName: 'First User',
+      } as User;
+      const secondUser: User = {
+        id: 'user_2',
+        fullName: 'Second User',
+      } as User;
+
+      storage.saveUser(firstUser);
+      storage.saveUser(secondUser);
+      const retrieved = storage.getUser();
+
+      expect(retrieved?.id).toBe('user_2');
+      expect(retrieved?.fullName).toBe('Second User');
+    });
+  });
+
+  describe('saveAuth and getAuth', () => {
+    it('should save and retrieve auth state', () => {
+      const authState = {
+        isAuthenticated: true,
+        email: 'user@example.com',
+      };
+
+      storage.saveAuth(authState);
+      const retrieved = storage.getAuth();
+
+      expect(retrieved).toEqual(authState);
+    });
+
+    it('should return default auth state when nothing is stored', () => {
+      const auth = storage.getAuth();
+      
+      expect(auth.isAuthenticated).toBe(false);
+      expect(auth.email).toBeUndefined();
+    });
+
+    it('should handle logout (clear auth)', () => {
+      storage.saveAuth({ isAuthenticated: true, email: 'user@test.com' });
+      storage.saveAuth({ isAuthenticated: false });
+      
+      const auth = storage.getAuth();
+      expect(auth.isAuthenticated).toBe(false);
+    });
+  });
+
+  describe('error handling', () => {
+    it('should handle corrupted JSON in users', () => {
+      localStorage.setItem('users', 'invalid json {]');
+      
+      const users = storage.getUsers();
+      expect(users).toEqual([]);
+    });
+
+    it('should handle corrupted JSON in single user', () => {
+      localStorage.setItem('currentUser', 'invalid json {]');
+      
+      const user = storage.getUser();
+      expect(user).toBeNull();
+    });
+
+    it('should handle corrupted JSON in auth', () => {
+      localStorage.setItem('auth', 'invalid json {]');
+      
+      const auth = storage.getAuth();
+      expect(auth.isAuthenticated).toBe(false);
+    });
+  });
+
+  describe('data persistence', () => {
+    it('should maintain data across multiple operations', () => {
+      // Save users
+      const users: User[] = [
+        { id: 'user_1', fullName: 'User 1' } as User,
+        { id: 'user_2', fullName: 'User 2' } as User,
+      ];
+      storage.saveUsers(users);
+
+      // Save current user
+      const currentUser: User = { id: 'user_1', fullName: 'User 1' } as User;
+      storage.saveUser(currentUser);
+
+      // Save auth
+      storage.saveAuth({ isAuthenticated: true, email: 'test@test.com' });
+
+      // Verify all data is still accessible
+      expect(storage.getUsers()).toHaveLength(2);
+      expect(storage.getUser()?.id).toBe('user_1');
+      expect(storage.getAuth().isAuthenticated).toBe(true);
+    });
+  });
+});

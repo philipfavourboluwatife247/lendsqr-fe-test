@@ -1,0 +1,166 @@
+import { generateMockUsers, calculateUserStats } from './generateMockData';
+
+describe('generateMockData', () => {
+  describe('generateMockUsers', () => {
+    it('should generate the correct number of users', () => {
+      const users = generateMockUsers(10);
+      expect(users).toHaveLength(10);
+    });
+
+    it('should generate 500 users by default', () => {
+      const users = generateMockUsers();
+      expect(users).toHaveLength(500);
+    });
+
+    it('should generate users with all required fields', () => {
+      const users = generateMockUsers(1);
+      const user = users[0];
+
+      expect(user).toHaveProperty('id');
+      expect(user).toHaveProperty('organization');
+      expect(user).toHaveProperty('username');
+      expect(user).toHaveProperty('email');
+      expect(user).toHaveProperty('phoneNumber');
+      expect(user).toHaveProperty('dateJoined');
+      expect(user).toHaveProperty('status');
+      expect(user).toHaveProperty('fullName');
+      expect(user).toHaveProperty('bvn');
+      expect(user).toHaveProperty('gender');
+      expect(user).toHaveProperty('maritalStatus');
+      expect(user).toHaveProperty('tier');
+      expect(user).toHaveProperty('guarantors');
+    });
+
+    it('should generate users with valid email format', () => {
+      const users = generateMockUsers(5);
+      const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+      
+      users.forEach(user => {
+        expect(user.email).toMatch(emailRegex);
+      });
+    });
+
+    it('should generate users with valid phone number format', () => {
+      const users = generateMockUsers(5);
+      const phoneRegex = /^0[7-9]\d{9}$/;
+      
+      users.forEach(user => {
+        expect(user.phoneNumber).toMatch(phoneRegex);
+      });
+    });
+
+    it('should generate users with valid BVN (11 digits)', () => {
+      const users = generateMockUsers(5);
+      
+      users.forEach(user => {
+        expect(user.bvn).toHaveLength(11);
+        expect(user.bvn).toMatch(/^\d{11}$/);
+      });
+    });
+
+    it('should generate users with valid status', () => {
+      const users = generateMockUsers(10);
+      const validStatuses = ['Active', 'Inactive', 'Pending', 'Blacklisted'];
+      
+      users.forEach(user => {
+        expect(validStatuses).toContain(user.status);
+      });
+    });
+
+    it('should generate users with valid gender', () => {
+      const users = generateMockUsers(10);
+      const validGenders = ['Male', 'Female'];
+      
+      users.forEach(user => {
+        expect(validGenders).toContain(user.gender);
+      });
+    });
+
+    it('should generate users with valid marital status', () => {
+      const users = generateMockUsers(10);
+      const validStatuses = ['Single', 'Married', 'Divorced', 'Widowed'];
+      
+      users.forEach(user => {
+        expect(validStatuses).toContain(user.maritalStatus);
+      });
+    });
+
+    it('should generate users with tier between 1 and 3', () => {
+      const users = generateMockUsers(10);
+      
+      users.forEach(user => {
+        expect(user.tier).toBeGreaterThanOrEqual(1);
+        expect(user.tier).toBeLessThanOrEqual(3);
+      });
+    });
+
+    it('should generate users with exactly 2 guarantors', () => {
+      const users = generateMockUsers(5);
+      
+      users.forEach(user => {
+        expect(user.guarantors).toHaveLength(2);
+      });
+    });
+
+    it('should generate guarantors with all required fields', () => {
+      const users = generateMockUsers(1);
+      const guarantor = users[0].guarantors[0];
+
+      expect(guarantor).toHaveProperty('fullName');
+      expect(guarantor).toHaveProperty('phoneNumber');
+      expect(guarantor).toHaveProperty('email');
+      expect(guarantor).toHaveProperty('relationship');
+    });
+
+    it('should generate unique user IDs', () => {
+      const users = generateMockUsers(100);
+      const ids = users.map(u => u.id);
+      const uniqueIds = new Set(ids);
+      
+      expect(uniqueIds.size).toBe(100);
+    });
+  });
+
+  describe('calculateUserStats', () => {
+    it('should return correct total users count', () => {
+      const users = generateMockUsers(100);
+      const stats = calculateUserStats(users);
+      
+      expect(stats.totalUsers).toBe(100);
+    });
+
+    it('should count active users correctly', () => {
+      const users = [
+        { status: 'Active' } as any,
+        { status: 'Active' } as any,
+        { status: 'Inactive' } as any,
+      ];
+      const stats = calculateUserStats(users);
+      
+      expect(stats.activeUsers).toBe(2);
+    });
+
+    it('should calculate users with loans as 50% of total', () => {
+      const users = generateMockUsers(100);
+      const stats = calculateUserStats(users);
+      
+      expect(stats.usersWithLoans).toBe(50);
+    });
+
+    it('should calculate users with savings as 70% of total', () => {
+      const users = generateMockUsers(100);
+      const stats = calculateUserStats(users);
+      
+      expect(stats.usersWithSavings).toBe(70);
+    });
+
+    it('should handle empty user array', () => {
+      const stats = calculateUserStats([]);
+      
+      expect(stats.totalUsers).toBe(0);
+      expect(stats.activeUsers).toBe(0);
+      expect(stats.usersWithLoans).toBe(0);
+      expect(stats.usersWithSavings).toBe(0);
+    });
+  });
+});
