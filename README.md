@@ -90,7 +90,7 @@ This project is a comprehensive frontend assessment that includes:
 
 1. **Clone the repository**
 ```bash
-   git clone https://github.com/your-username/lendsqr-fe-test.git
+   git clone https://github.com/philipfavourboluwatife247/lendsqr-fe-test.git
    cd lendsqr-fe-test
 ```
 
