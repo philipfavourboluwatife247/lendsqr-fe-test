@@ -49,7 +49,6 @@ const Sidebar: React.FC<SidebarProps> = ({ onClose }) => {
   return (
     <aside className={styles.sidebar}>
       <div className={styles.sidebarContent}>
-        {/* Mobile Profile Section */}
         <div className={styles.mobileProfile}>
           <div className={styles.profileSection}>
             <img src={profileImage} alt="Adedeji" className={styles.avatar} />
@@ -58,9 +57,9 @@ const Sidebar: React.FC<SidebarProps> = ({ onClose }) => {
               <img src={dropdownIcon} alt="" className={styles.dropdownIcon} />
             </div>
           </div>
-          <a href="#" className={styles.docsLink}>
+          <NavLink to="/docs" className={styles.docsLink} onClick={handleNavClick}>
             Docs
-          </a>
+          </NavLink>
         </div>
 
         <div className={styles.switchOrg} onClick={handleNavClick}>
@@ -76,9 +75,9 @@ const Sidebar: React.FC<SidebarProps> = ({ onClose }) => {
 
         <div className={styles.section}>
           <h4 className={styles.sectionTitle}>CUSTOMERS</h4>
-          <NavLink 
-            to="/users" 
-            className={({ isActive }) => 
+          <NavLink
+            to="/users"
+            className={({ isActive }) =>
               `${styles.navItem} ${isActive ? styles.active : ''}`
             }
             onClick={handleNavClick}
