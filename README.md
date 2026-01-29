@@ -8,9 +8,9 @@ A pixel-perfect implementation of the Lendsqr Admin Console built with React, Ty
 
 **Application URL:** [https://philip-favour-boluwatife-lendsqr-fe-test.vercel.app](https://philip-favour-boluwatife-lendsqr-fe-test.vercel.app)
 
-**Documentation:** [Project Documentation](link-to-your-doc)
+**Documentation:** [Project Documentation](https://drive.google.com/file/d/1RanS7rqvV2Lg2bhfOizQp2AZB0-u1uVn/view?usp=drivesdk)
 
-**Video Walkthrough:** [Loom Video](link-to-your-loom-video)
+**Video Walkthrough:** [Loom Video](https://www.loom.com/share/c4d1cebc2afb4b10be6421e647667eda)
 
 ## 📋 Table of Contents
 
