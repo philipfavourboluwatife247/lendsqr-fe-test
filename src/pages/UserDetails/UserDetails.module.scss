@@ -103,9 +103,9 @@
 
     .userInfoTop {
       display: grid;
-      grid-template-columns: auto 1fr 1fr;
-      gap: 20px;
-      padding: 30px 20PX 30PX 30PX;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 40px;
+      padding: 30px;
       border-bottom: 1px solid $border-color;
 
       @media (max-width: 1024px) {
